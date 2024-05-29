@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -26,6 +27,7 @@
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/L.Control.Layers.Tree.min.js"></script>
+        <script src="js/multi-style-layer.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -33,11 +35,17 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="data/Pipelinerev2Pipeline_rev2_16.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Pipelinerev2Pipeline_rev2_55.js"></script>
         <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[43.28299489115102,17.195672898818493],[43.283382551102655,17.196696157592257]]);
+        }).fitBounds([[43.282605599383096,17.189919865929657],[43.285706829675085,17.198105936120566]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -63,6 +71,18 @@
             popup.update();
           }
         }, true);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
@@ -82,7 +102,7 @@
         map.createPane('pane_Rascane_transparent_mosaic_group1_0_0_1');
         map.getPane('pane_Rascane_transparent_mosaic_group1_0_0_1').style.zIndex = 401;
         var img_Rascane_transparent_mosaic_group1_0_0_1 = 'data/Rascane_transparent_mosaic_group1_0_0_1.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_0_0_1 = [[43.28521184530419,17.193757216097644],[43.28596697373121,17.194790867003693]];
+        var img_bounds_Rascane_transparent_mosaic_group1_0_0_1 = [[43.285589410638046,17.19376147157653],[43.285966973731256,17.194278297111317]];
         var layer_Rascane_transparent_mosaic_group1_0_0_1 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_0_0_1,
                                               img_bounds_Rascane_transparent_mosaic_group1_0_0_1,
                                               {pane: 'pane_Rascane_transparent_mosaic_group1_0_0_1'});
@@ -91,7 +111,7 @@
         map.createPane('pane_Rascane_transparent_mosaic_group1_0_1_2');
         map.getPane('pane_Rascane_transparent_mosaic_group1_0_1_2').style.zIndex = 402;
         var img_Rascane_transparent_mosaic_group1_0_1_2 = 'data/Rascane_transparent_mosaic_group1_0_1_2.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_0_1_2 = [[43.28459879073203,17.19375024920405],[43.285353919108225,17.194783889549505]];
+        var img_bounds_Rascane_transparent_mosaic_group1_0_1_2 = [[43.28523607671127,17.193757456104475],[43.28561363978985,17.194274278595945]];
         var layer_Rascane_transparent_mosaic_group1_0_1_2 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_0_1_2,
                                               img_bounds_Rascane_transparent_mosaic_group1_0_1_2,
                                               {pane: 'pane_Rascane_transparent_mosaic_group1_0_1_2'});
@@ -100,7 +120,7 @@
         map.createPane('pane_Rascane_transparent_mosaic_group1_0_2_3');
         map.getPane('pane_Rascane_transparent_mosaic_group1_0_2_3').style.zIndex = 403;
         var img_Rascane_transparent_mosaic_group1_0_2_3 = 'data/Rascane_transparent_mosaic_group1_0_2_3.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_0_2_3 = [[43.28398573609301,17.193743282529518],[43.28474086441839,17.194776912314715]];
+        var img_bounds_Rascane_transparent_mosaic_group1_0_2_3 = [[43.28488274276228,17.193753440705198],[43.28526030582621,17.1942702601534]];
         var layer_Rascane_transparent_mosaic_group1_0_2_3 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_0_2_3,
                                               img_bounds_Rascane_transparent_mosaic_group1_0_2_3,
                                               {pane: 'pane_Rascane_transparent_mosaic_group1_0_2_3'});
@@ -109,7 +129,7 @@
         map.createPane('pane_Rascane_transparent_mosaic_group1_0_3_4');
         map.getPane('pane_Rascane_transparent_mosaic_group1_0_3_4').style.zIndex = 404;
         var img_Rascane_transparent_mosaic_group1_0_3_4 = 'data/Rascane_transparent_mosaic_group1_0_3_4.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_0_3_4 = [[43.28337268138712,17.193736316074045],[43.2841278096617,17.194769935299313]];
+        var img_bounds_Rascane_transparent_mosaic_group1_0_3_4 = [[43.28452940879108,17.193749425378684],[43.284906971840385,17.194266241783676]];
         var layer_Rascane_transparent_mosaic_group1_0_3_4 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_0_3_4,
                                               img_bounds_Rascane_transparent_mosaic_group1_0_3_4,
                                               {pane: 'pane_Rascane_transparent_mosaic_group1_0_3_4'});
@@ -118,103 +138,466 @@
         map.createPane('pane_Rascane_transparent_mosaic_group1_0_4_5');
         map.getPane('pane_Rascane_transparent_mosaic_group1_0_4_5').style.zIndex = 405;
         var img_Rascane_transparent_mosaic_group1_0_4_5 = 'data/Rascane_transparent_mosaic_group1_0_4_5.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_0_4_5 = [[43.28275947683311,17.193729348135655],[43.28351460505684,17.194762956798744]];
+        var img_bounds_Rascane_transparent_mosaic_group1_0_4_5 = [[43.28417607479767,17.193745410124944],[43.28455363783234,17.19426222348678]];
         var layer_Rascane_transparent_mosaic_group1_0_4_5 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_0_4_5,
                                               img_bounds_Rascane_transparent_mosaic_group1_0_4_5,
                                               {pane: 'pane_Rascane_transparent_mosaic_group1_0_4_5'});
         bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_0_4_5);
         map.addLayer(layer_Rascane_transparent_mosaic_group1_0_4_5);
-        map.createPane('pane_Rascane_transparent_mosaic_group1_1_0_6');
-        map.getPane('pane_Rascane_transparent_mosaic_group1_1_0_6').style.zIndex = 406;
-        var img_Rascane_transparent_mosaic_group1_1_0_6 = 'data/Rascane_transparent_mosaic_group1_1_0_6.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_1_0_6 = [[43.28520595188629,17.19472678149949],[43.2859610888486,17.19576044398822]];
-        var layer_Rascane_transparent_mosaic_group1_1_0_6 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_0_6,
-                                              img_bounds_Rascane_transparent_mosaic_group1_1_0_6,
-                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_0_6'});
-        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_0_6);
-        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_0_6);
-        map.createPane('pane_Rascane_transparent_mosaic_group1_1_1_7');
-        map.getPane('pane_Rascane_transparent_mosaic_group1_1_1_7').style.zIndex = 407;
-        var img_Rascane_transparent_mosaic_group1_1_1_7 = 'data/Rascane_transparent_mosaic_group1_1_1_7.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_1_1_7 = [[43.28459289743963,17.194719804871173],[43.28534803435094,17.195753456798943]];
-        var layer_Rascane_transparent_mosaic_group1_1_1_7 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_1_7,
-                                              img_bounds_Rascane_transparent_mosaic_group1_1_1_7,
-                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_1_7'});
-        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_1_7);
-        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_1_7);
-        map.createPane('pane_Rascane_transparent_mosaic_group1_1_2_8');
-        map.getPane('pane_Rascane_transparent_mosaic_group1_1_2_8').style.zIndex = 408;
-        var img_Rascane_transparent_mosaic_group1_1_2_8 = 'data/Rascane_transparent_mosaic_group1_1_2_8.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_1_2_8 = [[43.283979842926115,17.194712828462226],[43.28473497978641,17.19574646982937]];
-        var layer_Rascane_transparent_mosaic_group1_1_2_8 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_2_8,
-                                              img_bounds_Rascane_transparent_mosaic_group1_1_2_8,
-                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_2_8'});
-        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_2_8);
-        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_2_8);
-        map.createPane('pane_Rascane_transparent_mosaic_group1_1_3_9');
-        map.getPane('pane_Rascane_transparent_mosaic_group1_1_3_9').style.zIndex = 409;
-        var img_Rascane_transparent_mosaic_group1_1_3_9 = 'data/Rascane_transparent_mosaic_group1_1_3_9.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_1_3_9 = [[43.28336678834571,17.194705852272634],[43.28412192515503,17.19573948307949]];
-        var layer_Rascane_transparent_mosaic_group1_1_3_9 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_3_9,
-                                              img_bounds_Rascane_transparent_mosaic_group1_1_3_9,
-                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_3_9'});
-        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_3_9);
-        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_3_9);
-        map.createPane('pane_Rascane_transparent_mosaic_group1_1_4_10');
-        map.getPane('pane_Rascane_transparent_mosaic_group1_1_4_10').style.zIndex = 410;
-        var img_Rascane_transparent_mosaic_group1_1_4_10 = 'data/Rascane_transparent_mosaic_group1_1_4_10.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_1_4_10 = [[43.282753583917206,17.19469887459806],[43.2835087206755,17.195732494842378]];
-        var layer_Rascane_transparent_mosaic_group1_1_4_10 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_4_10,
-                                              img_bounds_Rascane_transparent_mosaic_group1_1_4_10,
-                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_4_10'});
-        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_4_10);
-        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_4_10);
-        map.createPane('pane_Rascane_transparent_mosaic_group1_2_0_11');
-        map.getPane('pane_Rascane_transparent_mosaic_group1_2_0_11').style.zIndex = 411;
-        var img_Rascane_transparent_mosaic_group1_2_0_11 = 'data/Rascane_transparent_mosaic_group1_2_0_11.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_2_0_11 = [[43.28520005025094,17.195696346608486],[43.28595519574832,17.196730020679446]];
-        var layer_Rascane_transparent_mosaic_group1_2_0_11 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_0_11,
-                                              img_bounds_Rascane_transparent_mosaic_group1_2_0_11,
-                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_0_11'});
-        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_0_11);
-        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_0_11);
-        map.createPane('pane_Rascane_transparent_mosaic_group1_2_1_12');
-        map.getPane('pane_Rascane_transparent_mosaic_group1_2_1_12').style.zIndex = 412;
-        var img_Rascane_transparent_mosaic_group1_2_1_12 = 'data/Rascane_transparent_mosaic_group1_2_1_12.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_2_1_12 = [[43.28458699592995,17.195689360245456],[43.28534214137614,17.19672302375509]];
-        var layer_Rascane_transparent_mosaic_group1_2_1_12 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_1_12,
-                                              img_bounds_Rascane_transparent_mosaic_group1_2_1_12,
-                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_1_12'});
-        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_1_12);
-        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_1_12);
-        map.createPane('pane_Rascane_transparent_mosaic_group1_2_2_13');
-        map.getPane('pane_Rascane_transparent_mosaic_group1_2_2_13').style.zIndex = 413;
-        var img_Rascane_transparent_mosaic_group1_2_2_13 = 'data/Rascane_transparent_mosaic_group1_2_2_13.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_2_2_13 = [[43.28397394154211,17.1956823741021],[43.2847290869371,17.196716027050748]];
-        var layer_Rascane_transparent_mosaic_group1_2_2_13 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_2_13,
-                                              img_bounds_Rascane_transparent_mosaic_group1_2_2_13,
-                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_2_13'});
-        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_2_13);
-        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_2_13);
-        map.createPane('pane_Rascane_transparent_mosaic_group1_2_3_14');
-        map.getPane('pane_Rascane_transparent_mosaic_group1_2_3_14').style.zIndex = 414;
-        var img_Rascane_transparent_mosaic_group1_2_3_14 = 'data/Rascane_transparent_mosaic_group1_2_3_14.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_2_3_14 = [[43.28336088708737,17.19567538817841],[43.28411603243119,17.196709030566407]];
-        var layer_Rascane_transparent_mosaic_group1_2_3_14 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_3_14,
-                                              img_bounds_Rascane_transparent_mosaic_group1_2_3_14,
-                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_3_14'});
-        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_3_14);
-        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_3_14);
-        map.createPane('pane_Rascane_transparent_mosaic_group1_2_4_15');
-        map.getPane('pane_Rascane_transparent_mosaic_group1_2_4_15').style.zIndex = 415;
-        var img_Rascane_transparent_mosaic_group1_2_4_15 = 'data/Rascane_transparent_mosaic_group1_2_4_15.png';
-        var img_bounds_Rascane_transparent_mosaic_group1_2_4_15 = [[43.28274768278456,17.19566840076766],[43.2835028280772,17.196702032592757]];
-        var layer_Rascane_transparent_mosaic_group1_2_4_15 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_4_15,
-                                              img_bounds_Rascane_transparent_mosaic_group1_2_4_15,
-                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_4_15'});
-        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_4_15);
-        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_4_15);
-        function pop_Pipelinerev2Pipeline_rev2_16(feature, layer) {
+        map.createPane('pane_Rascane_transparent_mosaic_group1_0_5_6');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_0_5_6').style.zIndex = 406;
+        var img_Rascane_transparent_mosaic_group1_0_5_6 = 'data/Rascane_transparent_mosaic_group1_0_5_6.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_0_5_6 = [[43.283822740782064,17.193741394943963],[43.2842003038021,17.194258205262702]];
+        var layer_Rascane_transparent_mosaic_group1_0_5_6 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_0_5_6,
+                                              img_bounds_Rascane_transparent_mosaic_group1_0_5_6,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_0_5_6'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_0_5_6);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_0_5_6);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_0_6_7');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_0_6_7').style.zIndex = 407;
+        var img_Rascane_transparent_mosaic_group1_0_6_7 = 'data/Rascane_transparent_mosaic_group1_0_6_7.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_0_6_7 = [[43.28346940674422,17.193737379835753],[43.283846969749646,17.194254187111447]];
+        var layer_Rascane_transparent_mosaic_group1_0_6_7 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_0_6_7,
+                                              img_bounds_Rascane_transparent_mosaic_group1_0_6_7,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_0_6_7'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_0_6_7);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_0_6_7);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_0_7_8');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_0_7_8').style.zIndex = 408;
+        var img_Rascane_transparent_mosaic_group1_0_7_8 = 'data/Rascane_transparent_mosaic_group1_0_7_8.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_0_7_8 = [[43.28311607268419,17.193733364800305],[43.28349363567497,17.19425016903301]];
+        var layer_Rascane_transparent_mosaic_group1_0_7_8 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_0_7_8,
+                                              img_bounds_Rascane_transparent_mosaic_group1_0_7_8,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_0_7_8'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_0_7_8);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_0_7_8);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_0_8_9');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_0_8_9').style.zIndex = 409;
+        var img_Rascane_transparent_mosaic_group1_0_8_9 = 'data/Rascane_transparent_mosaic_group1_0_8_9.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_0_8_9 = [[43.282762588820646,17.193729348135655],[43.2831401517968,17.194246149324137]];
+        var layer_Rascane_transparent_mosaic_group1_0_8_9 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_0_8_9,
+                                              img_bounds_Rascane_transparent_mosaic_group1_0_8_9,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_0_8_9'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_0_8_9);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_0_8_9);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_1_0_10');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_1_0_10').style.zIndex = 410;
+        var img_Rascane_transparent_mosaic_group1_1_0_10 = 'data/Rascane_transparent_mosaic_group1_1_0_10.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_1_0_10 = [[43.2855864340888,17.194251690495104],[43.28596399933978,17.1947685189581]];
+        var layer_Rascane_transparent_mosaic_group1_1_0_10 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_0_10,
+                                              img_bounds_Rascane_transparent_mosaic_group1_1_0_10,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_0_10'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_0_10);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_0_10);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_1_1_11');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_1_1_11').style.zIndex = 411;
+        var img_Rascane_transparent_mosaic_group1_1_1_11 = 'data/Rascane_transparent_mosaic_group1_1_1_11.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_1_1_11 = [[43.28523310019855,17.194247672186233],[43.28561066543489,17.194764497605856]];
+        var layer_Rascane_transparent_mosaic_group1_1_1_11 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_1_11,
+                                              img_bounds_Rascane_transparent_mosaic_group1_1_1_11,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_1_11'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_1_11);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_1_11);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_1_2_12');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_1_2_12').style.zIndex = 412;
+        var img_Rascane_transparent_mosaic_group1_1_2_12 = 'data/Rascane_transparent_mosaic_group1_1_2_12.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_1_2_12 = [[43.284879766286096,17.194243653950185],[43.28525733150776,17.194760476326493]];
+        var layer_Rascane_transparent_mosaic_group1_1_2_12 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_2_12,
+                                              img_bounds_Rascane_transparent_mosaic_group1_1_2_12,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_2_12'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_2_12);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_2_12);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_1_3_13');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_1_3_13').style.zIndex = 413;
+        var img_Rascane_transparent_mosaic_group1_1_3_13 = 'data/Rascane_transparent_mosaic_group1_1_3_13.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_1_3_13 = [[43.28452643235143,17.19423963578696],[43.28490399755844,17.19475645512]];
+        var layer_Rascane_transparent_mosaic_group1_1_3_13 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_3_13,
+                                              img_bounds_Rascane_transparent_mosaic_group1_1_3_13,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_3_13'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_3_13);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_3_13);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_1_4_14');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_1_4_14').style.zIndex = 414;
+        var img_Rascane_transparent_mosaic_group1_1_4_14 = 'data/Rascane_transparent_mosaic_group1_1_4_14.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_1_4_14 = [[43.284173098394554,17.194235617696553],[43.284550663586906,17.194752433986384]];
+        var layer_Rascane_transparent_mosaic_group1_1_4_14 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_4_14,
+                                              img_bounds_Rascane_transparent_mosaic_group1_1_4_14,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_4_14'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_4_14);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_4_14);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_1_5_15');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_1_5_15').style.zIndex = 415;
+        var img_Rascane_transparent_mosaic_group1_1_5_15 = 'data/Rascane_transparent_mosaic_group1_1_5_15.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_1_5_15 = [[43.283819764415455,17.194231599678965],[43.28419732959317,17.194748412925644]];
+        var layer_Rascane_transparent_mosaic_group1_1_5_15 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_5_15,
+                                              img_bounds_Rascane_transparent_mosaic_group1_1_5_15,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_5_15'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_5_15);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_5_15);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_1_6_16');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_1_6_16').style.zIndex = 416;
+        var img_Rascane_transparent_mosaic_group1_1_6_16 = 'data/Rascane_transparent_mosaic_group1_1_6_16.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_1_6_16 = [[43.28346643041416,17.19422758173419],[43.2838439955772,17.194744391937775]];
+        var layer_Rascane_transparent_mosaic_group1_1_6_16 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_6_16,
+                                              img_bounds_Rascane_transparent_mosaic_group1_1_6_16,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_6_16'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_6_16);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_6_16);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_1_7_17');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_1_7_17').style.zIndex = 417;
+        var img_Rascane_transparent_mosaic_group1_1_7_17 = 'data/Rascane_transparent_mosaic_group1_1_7_17.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_1_7_17 = [[43.28311309639065,17.19422356386223],[43.283490661539034,17.194740371022775]];
+        var layer_Rascane_transparent_mosaic_group1_1_7_17 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_7_17,
+                                              img_bounds_Rascane_transparent_mosaic_group1_1_7_17,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_7_17'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_7_17);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_7_17);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_1_8_18');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_1_8_18').style.zIndex = 418;
+        var img_Rascane_transparent_mosaic_group1_1_8_18 = 'data/Rascane_transparent_mosaic_group1_1_8_18.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_1_8_18 = [[43.28275961256365,17.19421954435992],[43.28313717769738,17.194736348476187]];
+        var layer_Rascane_transparent_mosaic_group1_1_8_18 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_1_8_18,
+                                              img_bounds_Rascane_transparent_mosaic_group1_1_8_18,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_1_8_18'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_1_8_18);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_1_8_18);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_2_0_19');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_2_0_19').style.zIndex = 419;
+        var img_Rascane_transparent_mosaic_group1_2_0_19 = 'data/Rascane_transparent_mosaic_group1_2_0_19.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_2_0_19 = [[43.285583455438854,17.194741909338866],[43.285961022847594,17.19525874073001]];
+        var layer_Rascane_transparent_mosaic_group1_2_0_19 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_0_19,
+                                              img_bounds_Rascane_transparent_mosaic_group1_2_0_19,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_0_19'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_0_19);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_0_19);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_2_1_20');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_2_1_20').style.zIndex = 420;
+        var img_Rascane_transparent_mosaic_group1_2_1_20 = 'data/Rascane_transparent_mosaic_group1_2_1_20.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_2_1_20 = [[43.28523012158516,17.194737888193178],[43.28560768897922,17.1952547165409]];
+        var layer_Rascane_transparent_mosaic_group1_2_1_20 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_1_20,
+                                              img_bounds_Rascane_transparent_mosaic_group1_2_1_20,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_1_20'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_1_20);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_1_20);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_2_2_21');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_2_2_21').style.zIndex = 421;
+        var img_Rascane_transparent_mosaic_group1_2_2_21 = 'data/Rascane_transparent_mosaic_group1_2_2_21.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_2_2_21 = [[43.284876787709265,17.194733867120366],[43.28525435508862,17.195250692424718]];
+        var layer_Rascane_transparent_mosaic_group1_2_2_21 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_2_21,
+                                              img_bounds_Rascane_transparent_mosaic_group1_2_2_21,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_2_21'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_2_21);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_2_21);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_2_3_22');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_2_3_22').style.zIndex = 422;
+        var img_Rascane_transparent_mosaic_group1_2_3_22 = 'data/Rascane_transparent_mosaic_group1_2_3_22.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_2_3_22 = [[43.28452345381115,17.194729846120428],[43.28490102117583,17.19524666838146]];
+        var layer_Rascane_transparent_mosaic_group1_2_3_22 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_3_22,
+                                              img_bounds_Rascane_transparent_mosaic_group1_2_3_22,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_3_22'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_3_22);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_3_22);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_2_4_23');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_2_4_23').style.zIndex = 423;
+        var img_Rascane_transparent_mosaic_group1_2_4_23 = 'data/Rascane_transparent_mosaic_group1_2_4_23.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_2_4_23 = [[43.28417011989083,17.194725825193355],[43.28454768724083,17.19524264441113]];
+        var layer_Rascane_transparent_mosaic_group1_2_4_23 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_4_23,
+                                              img_bounds_Rascane_transparent_mosaic_group1_2_4_23,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_4_23'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_4_23);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_4_23);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_2_5_24');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_2_5_24').style.zIndex = 424;
+        var img_Rascane_transparent_mosaic_group1_2_5_24 = 'data/Rascane_transparent_mosaic_group1_2_5_24.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_2_5_24 = [[43.2838167859483,17.194721804339157],[43.28419435328361,17.195238620513724]];
+        var layer_Rascane_transparent_mosaic_group1_2_5_24 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_5_24,
+                                              img_bounds_Rascane_transparent_mosaic_group1_2_5_24,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_5_24'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_5_24);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_5_24);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_2_6_25');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_2_6_25').style.zIndex = 425;
+        var img_Rascane_transparent_mosaic_group1_2_6_25 = 'data/Rascane_transparent_mosaic_group1_2_6_25.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_2_6_25 = [[43.28346345198354,17.194717783557824],[43.28384101930418,17.195234596689243]];
+        var layer_Rascane_transparent_mosaic_group1_2_6_25 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_6_25,
+                                              img_bounds_Rascane_transparent_mosaic_group1_2_6_25,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_6_25'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_6_25);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_6_25);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_2_7_26');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_2_7_26').style.zIndex = 426;
+        var img_Rascane_transparent_mosaic_group1_2_7_26 = 'data/Rascane_transparent_mosaic_group1_2_7_26.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_2_7_26 = [[43.2831101179966,17.194713762849357],[43.28348768530253,17.195230572937678]];
+        var layer_Rascane_transparent_mosaic_group1_2_7_26 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_7_26,
+                                              img_bounds_Rascane_transparent_mosaic_group1_2_7_26,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_7_26'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_7_26);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_7_26);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_2_8_27');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_2_8_27').style.zIndex = 427;
+        var img_Rascane_transparent_mosaic_group1_2_8_27 = 'data/Rascane_transparent_mosaic_group1_2_8_27.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_2_8_27 = [[43.282756634206166,17.194709740509385],[43.28313420149741,17.195226547553382]];
+        var layer_Rascane_transparent_mosaic_group1_2_8_27 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_2_8_27,
+                                              img_bounds_Rascane_transparent_mosaic_group1_2_8_27,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_2_8_27'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_2_8_27);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_2_8_27);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_3_0_28');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_3_0_28').style.zIndex = 428;
+        var img_Rascane_transparent_mosaic_group1_3_0_28 = 'data/Rascane_transparent_mosaic_group1_3_0_28.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_3_0_28 = [[43.28558047344112,17.195232333134413],[43.28595804300847,17.19574916745488]];
+        var layer_Rascane_transparent_mosaic_group1_3_0_28 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_3_0_28,
+                                              img_bounds_Rascane_transparent_mosaic_group1_3_0_28,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_3_0_28'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_3_0_28);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_3_0_28);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_3_1_29');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_3_1_29').style.zIndex = 429;
+        var img_Rascane_transparent_mosaic_group1_3_1_29 = 'data/Rascane_transparent_mosaic_group1_3_1_29.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_3_1_29 = [[43.285227139624034,17.19522830915073],[43.285604709176674,17.195745140427714]];
+        var layer_Rascane_transparent_mosaic_group1_3_1_29 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_3_1_29,
+                                              img_bounds_Rascane_transparent_mosaic_group1_3_1_29,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_3_1_29'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_3_1_29);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_3_1_29);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_3_2_30');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_3_2_30').style.zIndex = 430;
+        var img_Rascane_transparent_mosaic_group1_3_2_30 = 'data/Rascane_transparent_mosaic_group1_3_2_30.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_3_2_30 = [[43.28487380578471,17.195224285239966],[43.28525137532265,17.195741113473527]];
+        var layer_Rascane_transparent_mosaic_group1_3_2_30 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_3_2_30,
+                                              img_bounds_Rascane_transparent_mosaic_group1_3_2_30,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_3_2_30'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_3_2_30);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_3_2_30);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_3_3_31');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_3_3_31').style.zIndex = 431;
+        var img_Rascane_transparent_mosaic_group1_3_3_31 = 'data/Rascane_transparent_mosaic_group1_3_3_31.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_3_3_31 = [[43.28452047192321,17.195220261402127],[43.284898041446425,17.19573708659232]];
+        var layer_Rascane_transparent_mosaic_group1_3_3_31 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_3_3_31,
+                                              img_bounds_Rascane_transparent_mosaic_group1_3_3_31,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_3_3_31'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_3_3_31);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_3_3_31);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_3_4_32');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_3_4_32').style.zIndex = 432;
+        var img_Rascane_transparent_mosaic_group1_3_4_32 = 'data/Rascane_transparent_mosaic_group1_3_4_32.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_3_4_32 = [[43.28416713803948,17.19521623763721],[43.28454470754799,17.19573305978409]];
+        var layer_Rascane_transparent_mosaic_group1_3_4_32 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_3_4_32,
+                                              img_bounds_Rascane_transparent_mosaic_group1_3_4_32,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_3_4_32'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_3_4_32);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_3_4_32);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_3_5_33');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_3_5_33').style.zIndex = 433;
+        var img_Rascane_transparent_mosaic_group1_3_5_33 = 'data/Rascane_transparent_mosaic_group1_3_5_33.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_3_5_33 = [[43.283813804133544,17.195212213945215],[43.28419137362736,17.195729033048835]];
+        var layer_Rascane_transparent_mosaic_group1_3_5_33 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_3_5_33,
+                                              img_bounds_Rascane_transparent_mosaic_group1_3_5_33,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_3_5_33'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_3_5_33);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_3_5_33);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_3_6_34');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_3_6_34').style.zIndex = 434;
+        var img_Rascane_transparent_mosaic_group1_3_6_34 = 'data/Rascane_transparent_mosaic_group1_3_6_34.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_3_6_34 = [[43.283460470205384,17.195208190326134],[43.28383803968449,17.195725006386557]];
+        var layer_Rascane_transparent_mosaic_group1_3_6_34 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_3_6_34,
+                                              img_bounds_Rascane_transparent_mosaic_group1_3_6_34,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_3_6_34'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_3_6_34);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_3_6_34);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_3_7_35');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_3_7_35').style.zIndex = 435;
+        var img_Rascane_transparent_mosaic_group1_3_7_35 = 'data/Rascane_transparent_mosaic_group1_3_7_35.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_3_7_35 = [[43.28310713625503,17.195204166779977],[43.283484705719424,17.195720979797247]];
+        var layer_Rascane_transparent_mosaic_group1_3_7_35 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_3_7_35,
+                                              img_bounds_Rascane_transparent_mosaic_group1_3_7_35,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_3_7_35'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_3_7_35);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_3_7_35);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_3_8_36');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_3_8_36').style.zIndex = 436;
+        var img_Rascane_transparent_mosaic_group1_3_8_36 = 'data/Rascane_transparent_mosaic_group1_3_8_36.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_3_8_36 = [[43.28275365250121,17.195200141601166],[43.28313122195088,17.195716951574056]];
+        var layer_Rascane_transparent_mosaic_group1_3_8_36 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_3_8_36,
+                                              img_bounds_Rascane_transparent_mosaic_group1_3_8_36,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_3_8_36'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_3_8_36);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_3_8_36);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_4_0_37');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_4_0_37').style.zIndex = 437;
+        var img_Rascane_transparent_mosaic_group1_4_0_37 = 'data/Rascane_transparent_mosaic_group1_4_0_37.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_4_0_37 = [[43.28557748934092,17.195722756854988],[43.28595506106687,17.19623959410471]];
+        var layer_Rascane_transparent_mosaic_group1_4_0_37 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_4_0_37,
+                                              img_bounds_Rascane_transparent_mosaic_group1_4_0_37,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_4_0_37'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_4_0_37);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_4_0_37);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_4_1_38');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_4_1_38').style.zIndex = 438;
+        var img_Rascane_transparent_mosaic_group1_4_1_38 = 'data/Rascane_transparent_mosaic_group1_4_1_38.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_4_1_38 = [[43.285224155560456,17.1957187300333],[43.285601727271676,17.196235564239494]];
+        var layer_Rascane_transparent_mosaic_group1_4_1_38 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_4_1_38,
+                                              img_bounds_Rascane_transparent_mosaic_group1_4_1_38,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_4_1_38'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_4_1_38);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_4_1_38);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_4_2_39');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_4_2_39').style.zIndex = 439;
+        var img_Rascane_transparent_mosaic_group1_4_2_39 = 'data/Rascane_transparent_mosaic_group1_4_2_39.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_4_2_39 = [[43.28487082175777,17.195714703284587],[43.28524839345425,17.196231534447303]];
+        var layer_Rascane_transparent_mosaic_group1_4_2_39 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_4_2_39,
+                                              img_bounds_Rascane_transparent_mosaic_group1_4_2_39,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_4_2_39'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_4_2_39);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_4_2_39);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_4_3_40');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_4_3_40').style.zIndex = 440;
+        var img_Rascane_transparent_mosaic_group1_4_3_40 = 'data/Rascane_transparent_mosaic_group1_4_3_40.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_4_3_40 = [[43.28451748793289,17.19571067660885],[43.28489505961463,17.19622750472815]];
+        var layer_Rascane_transparent_mosaic_group1_4_3_40 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_4_3_40,
+                                              img_bounds_Rascane_transparent_mosaic_group1_4_3_40,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_4_3_40'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_4_3_40);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_4_3_40);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_4_4_41');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_4_4_41').style.zIndex = 441;
+        var img_Rascane_transparent_mosaic_group1_4_4_41 = 'data/Rascane_transparent_mosaic_group1_4_4_41.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_4_4_41 = [[43.28416415408578,17.19570665000609],[43.28454172575279,17.19622347508202]];
+        var layer_Rascane_transparent_mosaic_group1_4_4_41 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_4_4_41,
+                                              img_bounds_Rascane_transparent_mosaic_group1_4_4_41,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_4_4_41'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_4_4_41);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_4_4_41);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_4_5_42');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_4_5_42').style.zIndex = 442;
+        var img_Rascane_transparent_mosaic_group1_4_5_42 = 'data/Rascane_transparent_mosaic_group1_4_5_42.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_4_5_42 = [[43.283810820216466,17.195702623476297],[43.28418839186874,17.196219445508916]];
+        var layer_Rascane_transparent_mosaic_group1_4_5_42 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_4_5_42,
+                                              img_bounds_Rascane_transparent_mosaic_group1_4_5_42,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_4_5_42'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_4_5_42);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_4_5_42);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_4_6_43');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_4_6_43').style.zIndex = 443;
+        var img_Rascane_transparent_mosaic_group1_4_6_43 = 'data/Rascane_transparent_mosaic_group1_4_6_43.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_4_6_43 = [[43.283457486324934,17.195698597019483],[43.28383505796247,17.196215416008844]];
+        var layer_Rascane_transparent_mosaic_group1_4_6_43 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_4_6_43,
+                                              img_bounds_Rascane_transparent_mosaic_group1_4_6_43,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_4_6_43'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_4_6_43);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_4_6_43);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_4_7_44');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_4_7_44').style.zIndex = 444;
+        var img_Rascane_transparent_mosaic_group1_4_7_44 = 'data/Rascane_transparent_mosaic_group1_4_7_44.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_4_7_44 = [[43.2831041524112,17.195694570635627],[43.28348172403401,17.19621138658179]];
+        var layer_Rascane_transparent_mosaic_group1_4_7_44 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_4_7_44,
+                                              img_bounds_Rascane_transparent_mosaic_group1_4_7_44,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_4_7_44'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_4_7_44);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_4_7_44);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_4_8_45');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_4_8_45').style.zIndex = 445;
+        var img_Rascane_transparent_mosaic_group1_4_8_45 = 'data/Rascane_transparent_mosaic_group1_4_8_45.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_4_8_45 = [[43.282750668694014,17.195690542617974],[43.28312824030207,17.196207355519704]];
+        var layer_Rascane_transparent_mosaic_group1_4_8_45 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_4_8_45,
+                                              img_bounds_Rascane_transparent_mosaic_group1_4_8_45,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_4_8_45'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_4_8_45);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_4_8_45);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_5_0_46');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_5_0_46').style.zIndex = 446;
+        var img_Rascane_transparent_mosaic_group1_5_0_46 = 'data/Rascane_transparent_mosaic_group1_5_0_46.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_5_0_46 = [[43.28557450313827,17.19621318050052],[43.2859520770228,17.196730020679453]];
+        var layer_Rascane_transparent_mosaic_group1_5_0_46 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_5_0_46,
+                                              img_bounds_Rascane_transparent_mosaic_group1_5_0_46,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_5_0_46'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_5_0_46);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_5_0_46);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_5_1_47');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_5_1_47').style.zIndex = 447;
+        var img_Rascane_transparent_mosaic_group1_5_1_47 = 'data/Rascane_transparent_mosaic_group1_5_1_47.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_5_1_47 = [[43.28522116939445,17.196209150840836],[43.285598743264224,17.196725987976183]];
+        var layer_Rascane_transparent_mosaic_group1_5_1_47 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_5_1_47,
+                                              img_bounds_Rascane_transparent_mosaic_group1_5_1_47,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_5_1_47'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_5_1_47);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_5_1_47);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_5_2_48');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_5_2_48').style.zIndex = 448;
+        var img_Rascane_transparent_mosaic_group1_5_2_48 = 'data/Rascane_transparent_mosaic_group1_5_2_48.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_5_2_48 = [[43.28486783562842,17.196205121254177],[43.285245409483416,17.196721955345993]];
+        var layer_Rascane_transparent_mosaic_group1_5_2_48 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_5_2_48,
+                                              img_bounds_Rascane_transparent_mosaic_group1_5_2_48,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_5_2_48'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_5_2_48);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_5_2_48);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_5_3_49');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_5_3_49').style.zIndex = 449;
+        var img_Rascane_transparent_mosaic_group1_5_3_49 = 'data/Rascane_transparent_mosaic_group1_5_3_49.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_5_3_49 = [[43.28451450184018,17.196201091740548],[43.28489207568041,17.19671792278889]];
+        var layer_Rascane_transparent_mosaic_group1_5_3_49 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_5_3_49,
+                                              img_bounds_Rascane_transparent_mosaic_group1_5_3_49,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_5_3_49'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_5_3_49);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_5_3_49);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_5_4_50');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_5_4_50').style.zIndex = 450;
+        var img_Rascane_transparent_mosaic_group1_5_4_50 = 'data/Rascane_transparent_mosaic_group1_5_4_50.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_5_4_50 = [[43.284161168029726,17.19619706229994],[43.2845387418552,17.196713890304864]];
+        var layer_Rascane_transparent_mosaic_group1_5_4_50 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_5_4_50,
+                                              img_bounds_Rascane_transparent_mosaic_group1_5_4_50,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_5_4_50'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_5_4_50);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_5_4_50);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_5_5_51');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_5_5_51').style.zIndex = 451;
+        var img_Rascane_transparent_mosaic_group1_5_5_51 = 'data/Rascane_transparent_mosaic_group1_5_5_51.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_5_5_51 = [[43.28380783419706,17.196193032932356],[43.28418540800778,17.196709857893914]];
+        var layer_Rascane_transparent_mosaic_group1_5_5_51 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_5_5_51,
+                                              img_bounds_Rascane_transparent_mosaic_group1_5_5_51,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_5_5_51'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_5_5_51);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_5_5_51);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_5_6_52');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_5_6_52').style.zIndex = 452;
+        var img_Rascane_transparent_mosaic_group1_5_6_52 = 'data/Rascane_transparent_mosaic_group1_5_6_52.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_5_6_52 = [[43.283454500342174,17.196189003637798],[43.283832074138125,17.196705825556048]];
+        var layer_Rascane_transparent_mosaic_group1_5_6_52 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_5_6_52,
+                                              img_bounds_Rascane_transparent_mosaic_group1_5_6_52,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_5_6_52'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_5_6_52);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_5_6_52);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_5_7_53');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_5_7_53').style.zIndex = 453;
+        var img_Rascane_transparent_mosaic_group1_5_7_53 = 'data/Rascane_transparent_mosaic_group1_5_7_53.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_5_7_53 = [[43.28310116646509,17.19618497441626],[43.28347874024627,17.196701793291254]];
+        var layer_Rascane_transparent_mosaic_group1_5_7_53 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_5_7_53,
+                                              img_bounds_Rascane_transparent_mosaic_group1_5_7_53,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_5_7_53'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_5_7_53);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_5_7_53);
+        map.createPane('pane_Rascane_transparent_mosaic_group1_5_8_54');
+        map.getPane('pane_Rascane_transparent_mosaic_group1_5_8_54').style.zIndex = 454;
+        var img_Rascane_transparent_mosaic_group1_5_8_54 = 'data/Rascane_transparent_mosaic_group1_5_8_54.png';
+        var img_bounds_Rascane_transparent_mosaic_group1_5_8_54 = [[43.282747682784574,17.19618094355976],[43.28312525655098,17.196697759390272]];
+        var layer_Rascane_transparent_mosaic_group1_5_8_54 = new L.imageOverlay(img_Rascane_transparent_mosaic_group1_5_8_54,
+                                              img_bounds_Rascane_transparent_mosaic_group1_5_8_54,
+                                              {pane: 'pane_Rascane_transparent_mosaic_group1_5_8_54'});
+        bounds_group.addLayer(layer_Rascane_transparent_mosaic_group1_5_8_54);
+        map.addLayer(layer_Rascane_transparent_mosaic_group1_5_8_54);
+        function pop_Pipelinerev2Pipeline_rev2_55(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
@@ -260,38 +643,143 @@
             popup.setContent(updatedContent);
         }
 
-        function style_Pipelinerev2Pipeline_rev2_16_0() {
+        function style_Pipelinerev2Pipeline_rev2_55_0() {
             return {
-                pane: 'pane_Pipelinerev2Pipeline_rev2_16',
+                pane: 'pane_Pipelinerev2Pipeline_rev2_55',
                 opacity: 1,
-                color: 'rgba(226,28,163,1.0)',
+                color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 4.0,
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 8.0,
                 fillOpacity: 0,
                 interactive: true,
             }
         }
-        map.createPane('pane_Pipelinerev2Pipeline_rev2_16');
-        map.getPane('pane_Pipelinerev2Pipeline_rev2_16').style.zIndex = 416;
-        map.getPane('pane_Pipelinerev2Pipeline_rev2_16').style['mix-blend-mode'] = 'normal';
-        var layer_Pipelinerev2Pipeline_rev2_16 = new L.geoJson(json_Pipelinerev2Pipeline_rev2_16, {
+        function style_Pipelinerev2Pipeline_rev2_55_1() {
+            return {
+                pane: 'pane_Pipelinerev2Pipeline_rev2_55',
+                opacity: 1,
+                color: 'rgba(255,96,17,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Pipelinerev2Pipeline_rev2_55');
+        map.getPane('pane_Pipelinerev2Pipeline_rev2_55').style.zIndex = 455;
+        map.getPane('pane_Pipelinerev2Pipeline_rev2_55').style['mix-blend-mode'] = 'normal';
+        var layer_Pipelinerev2Pipeline_rev2_55 = new L.geoJson.multiStyle(json_Pipelinerev2Pipeline_rev2_55, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Pipelinerev2Pipeline_rev2_16',
-            layerName: 'layer_Pipelinerev2Pipeline_rev2_16',
-            pane: 'pane_Pipelinerev2Pipeline_rev2_16',
-            onEachFeature: pop_Pipelinerev2Pipeline_rev2_16,
-            style: style_Pipelinerev2Pipeline_rev2_16_0,
+            dataVar: 'json_Pipelinerev2Pipeline_rev2_55',
+            layerName: 'layer_Pipelinerev2Pipeline_rev2_55',
+            pane: 'pane_Pipelinerev2Pipeline_rev2_55',
+            onEachFeature: pop_Pipelinerev2Pipeline_rev2_55,
+            styles: [style_Pipelinerev2Pipeline_rev2_55_0,style_Pipelinerev2Pipeline_rev2_55_1,]
         });
-        bounds_group.addLayer(layer_Pipelinerev2Pipeline_rev2_16);
-        map.addLayer(layer_Pipelinerev2Pipeline_rev2_16);
+        bounds_group.addLayer(layer_Pipelinerev2Pipeline_rev2_55);
+        map.addLayer(layer_Pipelinerev2Pipeline_rev2_55);
+        var baseMaps = {};
+        var overlaysTree = [
+            {label: '<img src="legend/Pipelinerev2Pipeline_rev2_55.png" /> Pipeline rev2 — Pipeline_rev2', layer: layer_Pipelinerev2Pipeline_rev2_55},
+        {label: '<b>Ortophoto</b>', selectAllCheckbox: true, children: [
+            {label: "Rascane_transparent_mosaic_group1_5_8", layer: layer_Rascane_transparent_mosaic_group1_5_8_54},
+            {label: "Rascane_transparent_mosaic_group1_5_7", layer: layer_Rascane_transparent_mosaic_group1_5_7_53},
+            {label: "Rascane_transparent_mosaic_group1_5_6", layer: layer_Rascane_transparent_mosaic_group1_5_6_52},
+            {label: "Rascane_transparent_mosaic_group1_5_5", layer: layer_Rascane_transparent_mosaic_group1_5_5_51},
+            {label: "Rascane_transparent_mosaic_group1_5_4", layer: layer_Rascane_transparent_mosaic_group1_5_4_50},
+            {label: "Rascane_transparent_mosaic_group1_5_3", layer: layer_Rascane_transparent_mosaic_group1_5_3_49},
+            {label: "Rascane_transparent_mosaic_group1_5_2", layer: layer_Rascane_transparent_mosaic_group1_5_2_48},
+            {label: "Rascane_transparent_mosaic_group1_5_1", layer: layer_Rascane_transparent_mosaic_group1_5_1_47},
+            {label: "Rascane_transparent_mosaic_group1_5_0", layer: layer_Rascane_transparent_mosaic_group1_5_0_46},
+            {label: "Rascane_transparent_mosaic_group1_4_8", layer: layer_Rascane_transparent_mosaic_group1_4_8_45},
+            {label: "Rascane_transparent_mosaic_group1_4_7", layer: layer_Rascane_transparent_mosaic_group1_4_7_44},
+            {label: "Rascane_transparent_mosaic_group1_4_6", layer: layer_Rascane_transparent_mosaic_group1_4_6_43},
+            {label: "Rascane_transparent_mosaic_group1_4_5", layer: layer_Rascane_transparent_mosaic_group1_4_5_42},
+            {label: "Rascane_transparent_mosaic_group1_4_4", layer: layer_Rascane_transparent_mosaic_group1_4_4_41},
+            {label: "Rascane_transparent_mosaic_group1_4_3", layer: layer_Rascane_transparent_mosaic_group1_4_3_40},
+            {label: "Rascane_transparent_mosaic_group1_4_2", layer: layer_Rascane_transparent_mosaic_group1_4_2_39},
+            {label: "Rascane_transparent_mosaic_group1_4_1", layer: layer_Rascane_transparent_mosaic_group1_4_1_38},
+            {label: "Rascane_transparent_mosaic_group1_4_0", layer: layer_Rascane_transparent_mosaic_group1_4_0_37},
+            {label: "Rascane_transparent_mosaic_group1_3_8", layer: layer_Rascane_transparent_mosaic_group1_3_8_36},
+            {label: "Rascane_transparent_mosaic_group1_3_7", layer: layer_Rascane_transparent_mosaic_group1_3_7_35},
+            {label: "Rascane_transparent_mosaic_group1_3_6", layer: layer_Rascane_transparent_mosaic_group1_3_6_34},
+            {label: "Rascane_transparent_mosaic_group1_3_5", layer: layer_Rascane_transparent_mosaic_group1_3_5_33},
+            {label: "Rascane_transparent_mosaic_group1_3_4", layer: layer_Rascane_transparent_mosaic_group1_3_4_32},
+            {label: "Rascane_transparent_mosaic_group1_3_3", layer: layer_Rascane_transparent_mosaic_group1_3_3_31},
+            {label: "Rascane_transparent_mosaic_group1_3_2", layer: layer_Rascane_transparent_mosaic_group1_3_2_30},
+            {label: "Rascane_transparent_mosaic_group1_3_1", layer: layer_Rascane_transparent_mosaic_group1_3_1_29},
+            {label: "Rascane_transparent_mosaic_group1_3_0", layer: layer_Rascane_transparent_mosaic_group1_3_0_28},
+            {label: "Rascane_transparent_mosaic_group1_2_8", layer: layer_Rascane_transparent_mosaic_group1_2_8_27},
+            {label: "Rascane_transparent_mosaic_group1_2_7", layer: layer_Rascane_transparent_mosaic_group1_2_7_26},
+            {label: "Rascane_transparent_mosaic_group1_2_6", layer: layer_Rascane_transparent_mosaic_group1_2_6_25},
+            {label: "Rascane_transparent_mosaic_group1_2_5", layer: layer_Rascane_transparent_mosaic_group1_2_5_24},
+            {label: "Rascane_transparent_mosaic_group1_2_4", layer: layer_Rascane_transparent_mosaic_group1_2_4_23},
+            {label: "Rascane_transparent_mosaic_group1_2_3", layer: layer_Rascane_transparent_mosaic_group1_2_3_22},
+            {label: "Rascane_transparent_mosaic_group1_2_2", layer: layer_Rascane_transparent_mosaic_group1_2_2_21},
+            {label: "Rascane_transparent_mosaic_group1_2_1", layer: layer_Rascane_transparent_mosaic_group1_2_1_20},
+            {label: "Rascane_transparent_mosaic_group1_2_0", layer: layer_Rascane_transparent_mosaic_group1_2_0_19},
+            {label: "Rascane_transparent_mosaic_group1_1_8", layer: layer_Rascane_transparent_mosaic_group1_1_8_18},
+            {label: "Rascane_transparent_mosaic_group1_1_7", layer: layer_Rascane_transparent_mosaic_group1_1_7_17},
+            {label: "Rascane_transparent_mosaic_group1_1_6", layer: layer_Rascane_transparent_mosaic_group1_1_6_16},
+            {label: "Rascane_transparent_mosaic_group1_1_5", layer: layer_Rascane_transparent_mosaic_group1_1_5_15},
+            {label: "Rascane_transparent_mosaic_group1_1_4", layer: layer_Rascane_transparent_mosaic_group1_1_4_14},
+            {label: "Rascane_transparent_mosaic_group1_1_3", layer: layer_Rascane_transparent_mosaic_group1_1_3_13},
+            {label: "Rascane_transparent_mosaic_group1_1_2", layer: layer_Rascane_transparent_mosaic_group1_1_2_12},
+            {label: "Rascane_transparent_mosaic_group1_1_1", layer: layer_Rascane_transparent_mosaic_group1_1_1_11},
+            {label: "Rascane_transparent_mosaic_group1_1_0", layer: layer_Rascane_transparent_mosaic_group1_1_0_10},
+            {label: "Rascane_transparent_mosaic_group1_0_8", layer: layer_Rascane_transparent_mosaic_group1_0_8_9},
+            {label: "Rascane_transparent_mosaic_group1_0_7", layer: layer_Rascane_transparent_mosaic_group1_0_7_8},
+            {label: "Rascane_transparent_mosaic_group1_0_6", layer: layer_Rascane_transparent_mosaic_group1_0_6_7},
+            {label: "Rascane_transparent_mosaic_group1_0_5", layer: layer_Rascane_transparent_mosaic_group1_0_5_6},
+            {label: "Rascane_transparent_mosaic_group1_0_4", layer: layer_Rascane_transparent_mosaic_group1_0_4_5},
+            {label: "Rascane_transparent_mosaic_group1_0_3", layer: layer_Rascane_transparent_mosaic_group1_0_3_4},
+            {label: "Rascane_transparent_mosaic_group1_0_2", layer: layer_Rascane_transparent_mosaic_group1_0_2_3},
+            {label: "Rascane_transparent_mosaic_group1_0_1", layer: layer_Rascane_transparent_mosaic_group1_0_1_2},
+            {label: "Rascane_transparent_mosaic_group1_0_0", layer: layer_Rascane_transparent_mosaic_group1_0_0_1},]},
+            {label: "OpenStreetMap", layer: layer_OpenStreetMap_0},]
+        var lay = L.control.layers.tree(null, overlaysTree,{
+            //namedToggle: true,
+            //selectorBack: false,
+            //closedSymbol: '&#8862; &#x1f5c0;',
+            //openedSymbol: '&#8863; &#x1f5c1;',
+            //collapseAll: 'Collapse all',
+            //expandAll: 'Expand all',
+            collapsed: false, 
+        });
+        lay.addTo(map);
         setBounds();
+        var i = 0;
+        layer_Pipelinerev2Pipeline_rev2_55.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((exp_label_Pipelinerev2Pipeline_rev2_55_eval_expression(context) !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Arial\', sans-serif;">' + exp_label_Pipelinerev2Pipeline_rev2_55_eval_expression(context)) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Pipelinerev2Pipeline_rev2_55'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
         L.ImageOverlay.include({
             getBounds: function () {
                 return this._bounds;
             }
+        });
+        resetLabels([layer_Pipelinerev2Pipeline_rev2_55]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Pipelinerev2Pipeline_rev2_55]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Pipelinerev2Pipeline_rev2_55]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Pipelinerev2Pipeline_rev2_55]);
         });
         </script>
     </body>
